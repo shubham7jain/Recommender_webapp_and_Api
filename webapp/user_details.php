@@ -23,6 +23,7 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="//listjs.com/assets/javascripts/list.min.js"></script>
       <noscript>
          <link rel="stylesheet" href="css/skel-noscript.css" />
          <link rel="stylesheet" href="css/style.css" />
@@ -86,17 +87,22 @@
                success: function(data) {
                    //show content
                    objes = JSON.parse(data)
-                   rows = "<table class='table'><thead><tr><th><b>Index</b></th><th><b>Event Id</b></th><th><b>Latitude</b></th><th><b>Longitude</b></th><th><b>Time</b></th></tr></thead><tbody>";
+                   rows = "<div id='events'><input class='search' placeholder='Search' /><table class='table'><thead><tr><th><b>Index</b></th><th><b>Event Id</b></th><th><b>Latitude</b></th><th><b>Longitude</b></th><th><b>Time</b></th></tr></thead><tbody class='list'>";
                    var i = 1;
                    for (var event in objes) {
-                      rows += "<tr><td><b>" + i + "</b></td><td><a href='#' onclick='getEvent(\"" + event + "\")'>" + event + "</td><td>" + objes[event].lat + "</td><td>" + objes[event].lon + "</td><td>" + objes[event].time + "</td></tr>";
+                      rows += "<tr><td class='index'><b>" + i + "</b></td><td class='event_id'><a href='#' onclick='getEvent(\"" + event + "\")'>" + event + "</td><td class='latitude'>" + objes[event].lat + "</td><td class='longitude'>" + objes[event].lon + "</td><td class='time'>" + objes[event].time + "</td></tr>";
                       i = i + 1;
                    }
-                   rows += "</tbody></table>"
+                   rows += "</tbody></table></div>"
                    document.getElementById('position').innerHTML = rows;
                    $( "#position" ).show( "slow", function() {
                      
                   });
+                   var options = {
+                      valueNames: [ 'index', 'event_id', 'latitude', 'longitude', 'time' ]
+                    };
+
+                    var userList = new List('events', options);
                    document.getElementById("loading").style.visibility = "hidden";
                    return true;
                },
