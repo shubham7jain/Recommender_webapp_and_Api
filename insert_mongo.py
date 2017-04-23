@@ -2,12 +2,12 @@ from glob import iglob
 import os.path
 import pymongo
 import json
-from pymongo import Connection
 import json
 from collections import defaultdict
 
-connection = Connection()
-db = connection.meetup_data
+uri = 'mongodb://admin:password@ds115411.mlab.com:15411/meetup_data' 
+client = pymongo.MongoClient(uri)
+db = client.get_default_database()
 
 ### Adding Events Info Data
 events_json_file = open("data/LCHICAGO/events_info.json")

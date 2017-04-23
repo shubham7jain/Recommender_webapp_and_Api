@@ -3,8 +3,9 @@ from collections import defaultdict
 import pymongo
 from pymongo import Connection
 
-connection = Connection()
-db = connection.meetup_data
+uri = 'mongodb://admin:password@ds115411.mlab.com:15411/meetup_data' 
+client = pymongo.MongoClient(uri)
+db = client.get_default_database()
 
 def get_all_event_details_by_user_id(user_id):
 
