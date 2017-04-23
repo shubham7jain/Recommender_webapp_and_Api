@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
    <head>
-      <link rel="shortcut icon" href="precis.png">
+      <link rel="shortcut icon" href="meetup.png">
       <title>Event Recommender</title>
       <meta http-equiv="content-type" content="text/html; charset=utf-8" />
       <meta name="keywords" content="event, recommender">

@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
    <head>
-      <link rel="shortcut icon" href="precis.png">
+      <link rel="shortcut icon" href="meetup.png">
       <title>Event Recommender</title>
       <meta http-equiv="content-type" content="text/html; charset=utf-8" />
       <meta name="keywords" content="event, recommender">
@@ -60,7 +60,7 @@
                    var i = 1;
                    for (var event in objes) {
                       rows += "<tr><td><b>" + i + "</b></td><td>" + event + "</td><td>" + 
-                      + objes[event].description + "</td><td>" + objes[event].lat + "</td><td>" + objes[event].lon + "</td><td>" + objes[event].time + "</td></tr>";
+                      objes[event].description + "</td><td>" + objes[event].lat + "</td><td>" + objes[event].lon + "</td><td>" + objes[event].time + "</td></tr>";
                       i = i + 1;
                    }
                    rows += "</tbody></table>"
