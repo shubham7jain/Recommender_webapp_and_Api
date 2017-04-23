@@ -45,23 +45,22 @@
       <script>
         function myFunction() {
             document.getElementById("error").style.visibility = "hidden";
-           var url = document.getElementById('styled').value
-           var ratio = document.getElementById('ratio').value
+           var user_id = document.getElementById('styled').value
            document.getElementById("loading").style.visibility = "visible";
             $.ajax({
-               type: "POST",
-               url: "https://precis.herokuapp.com/summaryurl",
-               data: JSON.stringify({'url': url, 'ratio': parseFloat(ratio)}),
+               type: "GET",
+               url: "https://cryptic-garden-72408.herokuapp.com/user/".concat(user_id),
+               // data: JSON.stringify({'url': url, 'ratio': parseFloat(ratio)}),
                // dataType: 'json',
                contentType: 'application/json; charset=UTF-8',
                success: function(data) {
                    //show content
                    obje = JSON.parse(data)
-                   document.getElementById('position').innerHTML = '<b>'.concat(obje.summary, '</b>');
+                   document.getElementById('position').innerHTML = '<b>'.concat(obje, '</b>');
                    $( "#position" ).show( "slow", function() {
                      
                   });
-                   document.getElementById('title').innerHTML = '<b>'.concat(obje.meta.title, '</b>');
+                   document.getElementById('title').innerHTML = '<b>'.concat(obje, '</b>');
                    $( "#title" ).show( "slow", function() {
                      
                   });
@@ -114,11 +113,13 @@
                </a>
                <h3>Get User Details</h3>
             </header>
-            <div class="input-group input-group-lg">
-               <span class="input-group-addon" id="sizing-addon1">UserId:</span>
-               <input type="text" name="text" class="form-control" id="styled" placeholder="Paste the user id and submit " aria-describedby="sizing-addon1">
-            </div>
-            <input type='submit' class="button1" id='smm2' name='submit' value='Search'>
+            <form onsubmit="return myFunction();" method='POST' action='index.php'>
+              <div class="input-group input-group-lg">
+                 <span class="input-group-addon" id="sizing-addon1">UserId:</span>
+                 <input type="text" name="text" class="form-control" id="styled" placeholder="Paste the user id and submit " aria-describedby="sizing-addon1">
+              </div>
+              <input type='submit' class="button1" id='smm2' name='submit' value='Search'>
+            </form>
          <style>
             #position {
             width:60%;
