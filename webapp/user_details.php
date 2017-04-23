@@ -44,9 +44,9 @@
       </script>
       <script>
       $(function(){ /* to make sure the script runs after page load */
-        $('div.a.read_more').click(function(event){ /* find all a.read_more elements and bind the following code to them */
+        $('a.read_more').click(function(event){ /* find all a.read_more elements and bind the following code to them */
         event.preventDefault(); /* prevent the a from changing the url */
-            $('div').find('#moretext').css('visibility', 'visible'); /* show the .more_text span */
+            $(this).prev('#moretext').css('visibility', 'visible'); /* show the .more_text span */
         });
 
       });
