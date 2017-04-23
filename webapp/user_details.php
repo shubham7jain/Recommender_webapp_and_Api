@@ -56,11 +56,11 @@
                success: function(data) {
                    //show content
                    objes = JSON.parse(data)
-                   rows = "<tr><th>" + "Event Id" + "</th><th>" + "Description" + "</th></tr>";
-                   alert(objes.length)
+                   rows = "<table><tr><th>" + "Event Id" + "</th><th>" + "Description" + "</th></tr>";
                    for (var event in objes) {
                       rows += "<tr><td>" + event + "</td><td>" + objes[event].description + "</td><td></tr>";
                    }
+                   rows += "</table>"
                    document.getElementById('position').innerHTML = rows;
                    $( "#position" ).show( "slow", function() {
                      
