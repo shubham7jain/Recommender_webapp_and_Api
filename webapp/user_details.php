@@ -56,7 +56,7 @@
                success: function(data) {
                    //show content
                    objes = JSON.parse(data)
-                   rows = "<table class='table'><thead><tr><th><b>Index</b></th><th>Event Id</b></th><th><b>Description</b></th><th><b>Latitude</b></th><th><b>Longitude</b></th><th><b>Time</b></th></tr></thead><tbody>";
+                   rows = "<table class='table'><thead><tr><th><b>Index</b></th><th><b>Event Id</b></th><th><b>Description</b></th><th><b>Latitude</b></th><th><b>Longitude</b></th><th><b>Time</b></th></tr></thead><tbody>";
                    var i = 1;
                    for (var event in objes) {
                       rows += "<tr><td><b>" + i + "</b></td><td>" + event + "</td><td>" + objes[event].description + "</td><td>" + objes[event].lat + "</td><td>" + objes[event].lon + "</td><td>" + objes[event].time + "</td></tr>";

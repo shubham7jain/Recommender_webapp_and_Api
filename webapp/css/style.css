@@ -957,7 +957,10 @@
 /*********************************************************************************/
 	#reli, #copyright
 	{
-		background: #000000	;
+		background: #DC143C	;
+	}
+	html * {
+    color: #DC143C;
 	}
 	#featured
 	{
@@ -1023,7 +1026,7 @@
 		}	
 
 .button1 {
-    background-color: #000000;
+    background-color: #DC143C;
     border: none;
     color: white;
     padding: 10px 25px;
