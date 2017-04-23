@@ -87,7 +87,7 @@
                success: function(data) {
                    //show content
                    objes = JSON.parse(data)
-                   rows = "<div id='events'><input class='search' placeholder='Search' /><button class='sort' data-sort='time'>Sort by Time</button><table class='table'><thead><tr><th><b>Index</b></th><th><b>Event Id</b></th><th><b>Latitude</b></th><th><b>Longitude</b></th><th><b>Time</b></th></tr></thead><tbody class='list'>";
+                   rows = "<div id='events'><input class='form-control' placeholder='Search for...'/><button class='sort btn btn-secondary btn-lg' data-sort='time'>Sort by Time</button><table class='table'><thead><tr><th><b>Index</b></th><th><b>Event Id</b></th><th><b>Latitude</b></th><th><b>Longitude</b></th><th><b>Time</b></th></tr></thead><tbody class='list'>";
                    var i = 1;
                    for (var event in objes) {
                       rows += "<tr><td class='index'><b>" + i + "</b></td><td class='event_id'><a href='#' onclick='getEvent(\"" + event + "\")'>" + event + "</td><td class='latitude'>" + objes[event].lat + "</td><td class='longitude'>" + objes[event].lon + "</td><td class='time'>" + objes[event].time + "</td></tr>";
