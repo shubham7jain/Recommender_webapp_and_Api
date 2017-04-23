@@ -58,15 +58,11 @@
                    objes = JSON.parse(data)
                    rows = "<tr><td>" + Event Id + "</td><td>" + Description + "</td><td></tr>";
                    for (var i = 0; i < objes.length; i++) {
-                      obj = objes[i]
+                      obj = objes[i];
                       rows += "<tr><td>" + obj.event_id + "</td><td>" + obj.description + "</td><td></tr>";
                    }
                    document.getElementById('position').innerHTML = '<b>'.concat(rows, '</b>');
                    $( "#position" ).show( "slow", function() {
-                     
-                  });
-                   document.getElementById('title').innerHTML = '<b>'.concat(obje, '</b>');
-                   $( "#title" ).show( "slow", function() {
                      
                   });
                    document.getElementById("loading").style.visibility = "hidden";
