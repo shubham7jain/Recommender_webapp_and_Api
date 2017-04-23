@@ -1,7 +1,6 @@
 import json
 from collections import defaultdict
 import pymongo
-from pymongo import Connection
 
 uri = 'mongodb://admin:password@ds115411.mlab.com:15411/meetup_data' 
 client = pymongo.MongoClient(uri)
