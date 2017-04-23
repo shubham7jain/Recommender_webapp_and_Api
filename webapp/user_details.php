@@ -62,7 +62,9 @@
                       rows += "<tr><th><b>Time</b></th><td>" + objes[event].time + "</td></tr>";
                    }
                    rows += "</table>"
+                   var modal = document.getElementById('myModal');
                    $(".modal-content").innerHTML = rows;
+                   modal.style.display = "block";
                    return true;
                },
                error: function(xhr, textStatus, err) {
@@ -88,7 +90,7 @@
                    rows = "<table class='table'><thead><tr><th><b>Index</b></th><th><b>Event Id</b></th><th><b>Latitude</b></th><th><b>Longitude</b></th><th><b>Time</b></th></tr></thead><tbody>";
                    var i = 1;
                    for (var event in objes) {
-                      rows += "<tr><td><b>" + i + "</b></td><td><a href='#' onclick='getEvent(" + event + ")'>" + event + "</td><td>" + objes[event].lat + "</td><td>" + objes[event].lon + "</td><td>" + objes[event].time + "</td></tr>";
+                      rows += "<tr><td><b>" + i + "</b></td><td><a href='#' onclick='getEvent('" + event + "')'>" + event + "</td><td>" + objes[event].lat + "</td><td>" + objes[event].lon + "</td><td>" + objes[event].time + "</td></tr>";
                       i = i + 1;
                    }
                    rows += "</tbody></table>"
