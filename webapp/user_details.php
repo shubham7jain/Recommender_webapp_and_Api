@@ -62,9 +62,8 @@
                       rows += "<tr><th><b>Time</b></th><td>" + objes[event].time + "</td></tr>";
                    }
                    rows += "</table>"
-                   var modal = document.getElementById('myModal');
                    $(".modal-body").html(rows);
-                   modal.style.display = "block";
+                   $('#myModal').modal('show');
                    return true;
                },
                error: function(xhr, textStatus, err) {
