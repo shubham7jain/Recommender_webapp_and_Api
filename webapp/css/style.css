@@ -1073,7 +1073,6 @@ input:focus {
 }
 .sort:hover {
   text-decoration: none;
-  background-color:#1b8aba;
 }
 .sort:focus {
   outline:none;
