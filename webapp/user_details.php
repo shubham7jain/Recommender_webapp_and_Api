@@ -56,11 +56,11 @@
                success: function(data) {
                    //show content
                    objes = JSON.parse(data)
-                   rows = "<table class='table'><thead><tr><th>" + "Event Id" + "</th><th>" + "Description" + "</th></thead></tr>";
+                   rows = "<table class='table'><thead><tr><th>Event Id</th><th>Description</th><th>Latitude</th><th>Longitude</th><th>Time</th></tr></thead><tbody>";
                    for (var event in objes) {
-                      rows += "<tr><td>" + event + "</td><td>" + objes[event].description + "</td><td></tr>";
+                      rows += "<tr><td>" + event + "</td><td>" + objes[event].description + "</td><td>" + objes[event].lat + "</td><td>" + objes[event].lon + "</td><td>" + objes[event].time + "</td></tr>";
                    }
-                   rows += "</table>"
+                   rows += "</tbody></table>"
                    document.getElementById('position').innerHTML = rows;
                    $( "#position" ).show( "slow", function() {
                      
