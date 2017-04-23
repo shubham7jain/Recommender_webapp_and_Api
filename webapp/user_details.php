@@ -43,6 +43,35 @@
          
       </script>
       <script>
+        function getEvent(event_id) {
+          $.ajax({
+               type: "GET",
+               url: "https://cryptic-garden-72408.herokuapp.com/event/".concat(event_id),
+               // data: JSON.stringify({'url': url, 'ratio': parseFloat(ratio)}),
+               // dataType: 'json',
+               contentType: 'application/json; charset=UTF-8',
+               success: function(data) {
+                   //show content
+                   objes = JSON.parse(data)
+                   rows = "<table class='table'>";
+                   for (var event in objes) {
+                      rows += "<tr><th><b>Event Id</b></th><td>" + event + "</td></tr>";
+                      rows += "<tr><th><b>Description</b></th><td>" + objes[event].description + "</td></tr>";
+                      rows += "<tr><th><b>Latitude</b></th><td>" + objes[event].lat + "</td></tr>";
+                      rows += "<tr><th><b>Longitude</b></th><td>" + objes[event].lon + "</td></tr>";
+                      rows += "<tr><th><b>Time</b></th><td>" + objes[event].time + "</td></tr>";
+                   }
+                   rows += "</table>"
+                   $(".modal-content").innerHTML = rows;
+                   return true;
+               },
+               error: function(xhr, textStatus, err) {
+                   document.getElementById("loading").style.visibility = "hidden";
+                   document.getElementById("error").style.visibility = "visible";
+                   return true;
+               }
+            });
+        }
         function myFunction() {
             document.getElementById("error").style.visibility = "hidden";
            var user_id = document.getElementById('styled').value
@@ -56,11 +85,10 @@
                success: function(data) {
                    //show content
                    objes = JSON.parse(data)
-                   rows = "<table class='table'><thead><tr><th><b>Index</b></th><th><b>Event Id</b></th><th><b>Description</b></th><th><b>Latitude</b></th><th><b>Longitude</b></th><th><b>Time</b></th></tr></thead><tbody>";
+                   rows = "<table class='table'><thead><tr><th><b>Index</b></th><th><b>Event Id</b></th><th><b>Latitude</b></th><th><b>Longitude</b></th><th><b>Time</b></th></tr></thead><tbody>";
                    var i = 1;
                    for (var event in objes) {
-                      rows += "<tr><td><b>" + i + "</b></td><td>" + event + "</td><td>" + 
-                      objes[event].description + "</td><td>" + objes[event].lat + "</td><td>" + objes[event].lon + "</td><td>" + objes[event].time + "</td></tr>";
+                      rows += "<tr><td><b>" + i + "</b></td><td><a href='#' onclick='getEvent(" + event + ")'>" + event + "</td><td>" + objes[event].lat + "</td><td>" + objes[event].lon + "</td><td>" + objes[event].time + "</td></tr>";
                       i = i + 1;
                    }
                    rows += "</tbody></table>"
@@ -151,6 +179,11 @@
          <div id="position">
 
          </div>
+         <div id="myModal" class="modal">
+           <div class="modal-content">
+           </div>
+         </div>
+
          <div id="error" class="alert alert-danger" role="alert" style="visibility:hidden; width: 50%; margin: auto;">
             Oh snap! Change a few things up and try submitting again.
          </div>
