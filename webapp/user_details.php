@@ -63,7 +63,7 @@
                    }
                    rows += "</table>"
                    var modal = document.getElementById('myModal');
-                   $(".modal-content").html(rows);
+                   $(".modal-body").html(rows);
                    modal.style.display = "block";
                    return true;
                },
@@ -181,10 +181,20 @@
          <div id="position">
 
          </div>
-         <div id="myModal" class="modal">
-           <div class="modal-content">
-           </div>
-         </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content get_direction_modal_bg">
+      <div class="text-right"><a class="fa fa-times white normal12" data-dismiss="modal">close</a></div>
+      <div class="modal-body">
+        <p class="white text-center">Share this Event</p>
+        <div class="share_list_popup">
+          <ul>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
          <div id="error" class="alert alert-danger" role="alert" style="visibility:hidden; width: 50%; margin: auto;">
             Oh snap! Change a few things up and try submitting again.
