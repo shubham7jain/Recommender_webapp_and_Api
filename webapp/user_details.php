@@ -44,9 +44,9 @@
       </script>
       <script>
       $(function(){ /* to make sure the script runs after page load */
-        $('a.read_more').click(function(event){ /* find all a.read_more elements and bind the following code to them */
+        $('div.a.read_more').click(function(event){ /* find all a.read_more elements and bind the following code to them */
         event.preventDefault(); /* prevent the a from changing the url */
-            $(this).find('.more_text').show(); /* show the .more_text span */
+            $('div').find('#moretext').css('visibility', 'visible'); /* show the .more_text span */
         });
 
       });
@@ -67,7 +67,7 @@
                    var i = 1;
                    for (var event in objes) {
                       rows += "<tr><td><b>" + i + "</b></td><td>" + event + "</td><td>" + 
-                      "<a href='#' class='read_more'>Read Description</a><br/><span style='visibility:hidden;' class='more_text'>" + objes[event].description + "</span></td><td>" + objes[event].lat + "</td><td>" + objes[event].lon + "</td><td>" + objes[event].time + "</td></tr>";
+                      "<a href='#' class='read_more'>Read Description</a><br/><span style='visibility:hidden;' id='moretext'>" + objes[event].description + "</span></td><td>" + objes[event].lat + "</td><td>" + objes[event].lon + "</td><td>" + objes[event].time + "</td></tr>";
                       i = i + 1;
                    }
                    rows += "</tbody></table>"
