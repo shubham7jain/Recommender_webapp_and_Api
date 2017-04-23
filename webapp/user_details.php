@@ -56,9 +56,11 @@
                success: function(data) {
                    //show content
                    objes = JSON.parse(data)
-                   rows = "<table class='table'><thead><tr><th>Event Id</th><th>Description</th><th>Latitude</th><th>Longitude</th><th>Time</th></tr></thead><tbody>";
+                   rows = "<table class='table'><thead><tr><th><b>Index</b></th><th>Event Id</b></th><th><b>Description</b></th><th><b>Latitude</b></th><th><b>Longitude</b></th><th><b>Time</b></th></tr></thead><tbody>";
+                   var i = 1;
                    for (var event in objes) {
-                      rows += "<tr><td>" + event + "</td><td>" + objes[event].description + "</td><td>" + objes[event].lat + "</td><td>" + objes[event].lon + "</td><td>" + objes[event].time + "</td></tr>";
+                      rows += "<tr><td><b>" + i + "</b></td><td>" + event + "</td><td>" + objes[event].description + "</td><td>" + objes[event].lat + "</td><td>" + objes[event].lon + "</td><td>" + objes[event].time + "</td></tr>";
+                      i = i + 1;
                    }
                    rows += "</tbody></table>"
                    document.getElementById('position').innerHTML = rows;
@@ -123,7 +125,7 @@
             </form>
          <style>
             #position {
-            width:60%;
+            width:100%;
             margin:0 auto;
             padding-top: 25px;
             }
