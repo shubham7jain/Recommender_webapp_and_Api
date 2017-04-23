@@ -110,7 +110,7 @@
          <div class="container">
             <header>
                <a href="index.php">
-                  <h2 style="color:black;">Meetup Event Recommender</h2>
+                  <h2 style="color:#DC143C;">Meetup Event Recommender</h2>
                </a>
                <h3>Data Dashboard</h3>
             </header>
