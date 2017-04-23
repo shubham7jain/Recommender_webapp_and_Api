@@ -55,8 +55,13 @@
                contentType: 'application/json; charset=UTF-8',
                success: function(data) {
                    //show content
-                   obje = JSON.parse(data)
-                   document.getElementById('position').innerHTML = '<b>'.concat(obje, '</b>');
+                   objes = JSON.parse(data)
+                   rows = "<tr><td>" + Event Id + "</td><td>" + Description + "</td><td></tr>";
+                   for (var i = 0; i < objes.length; i++) {
+                      obj = objes[i]
+                      rows += "<tr><td>" + obj.event_id + "</td><td>" + obj.description + "</td><td></tr>";
+                   }
+                   document.getElementById('position').innerHTML = '<b>'.concat(rows, '</b>');
                    $( "#position" ).show( "slow", function() {
                      
                   });
@@ -145,6 +150,7 @@
             
          </div>
          <div id="position">
+
          </div>
          <div id="error" class="alert alert-danger" role="alert" style="visibility:hidden; width: 50%; margin: auto;">
             Oh snap! Change a few things up and try submitting again.
