@@ -3,10 +3,10 @@
 <html>
    <head>
       <link rel="shortcut icon" href="precis.png">
-      <title>Precis - Free automatic text summarization tool</title>
+      <title>Event Recommender</title>
       <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-      <meta name="keywords" content="online symmary, text summarization tool, automatic text summary, text mining, text summarizer, text summary, auto summarizer, automatic text summarizer, free summarizer, summarize text, summary generator, text summary, online text summarization, summarizer, summary, summarize, article summarizer, ariticle summarization">
-      <meta name="description" content="Online Automatic Text Summarization - Precis is a simple tool that help to summarize large text documents and split from the most important sentences.">
+      <meta name="keywords" content="event, recommender">
+      <meta name="description" content="Event Recommender">
       <link rel="stylesheet" href="//yui.yahooapis.com/pure/0.5.0/pure-min.css">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link href='//fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900' rel='stylesheet' type='text/css'>
@@ -44,20 +44,28 @@
       </script>
       <script>
         function myFunction() {
-         document.getElementById("error").style.visibility = "hidden";
-           var text = document.getElementById('styled').value
-           var ratio = document.getElementById('ratio').value
+            document.getElementById("error").style.visibility = "hidden";
+           var event_id = document.getElementById('styled').value
            document.getElementById("loading").style.visibility = "visible";
             $.ajax({
-               type: "POST",
-               url: "https://precis.herokuapp.com/summary",
-               data: JSON.stringify({'text': text, 'ratio': parseFloat(ratio)}),
+               type: "GET",
+               url: "https://cryptic-garden-72408.herokuapp.com/event/".concat(event_id),
+               // data: JSON.stringify({'url': url, 'ratio': parseFloat(ratio)}),
                // dataType: 'json',
                contentType: 'application/json; charset=UTF-8',
                success: function(data) {
                    //show content
-                   obje = JSON.parse(data)
-                   document.getElementById('position').innerHTML = '<b>'.concat(obje.summary, '</b>');
+                   objes = JSON.parse(data)
+                   rows = "<table class='table'>";
+                   for (var event in objes) {
+                      rows += "<tr><th><b>Event Id</b></th><td>" + event + "</td></tr>";
+                      rows += "<tr><th><b>Description</b></th><td>" + objes[event].description + "</td></tr>";
+                      rows += "<tr><th><b>Latitude</b></th><td>" + objes[event].lat + "</td></tr>";
+                      rows += "<tr><th><b>Longitude</b></th><td>" + objes[event].lon + "</td></tr>";
+                      rows += "<tr><th><b>Time</b></th><td>" + objes[event].time + "</td></tr>";
+                   }
+                   rows += "</table>"
+                   document.getElementById('position').innerHTML = rows;
                    $( "#position" ).show( "slow", function() {
                      
                   });
@@ -84,7 +92,7 @@
       </style>
       <div class="beta">
          <a href="index.php">
-            <img src="precis.png" alt="automaitc text summarizer beta version" height="65" width="80">
+            <img src="meetup.png" alt="event recommender" height="65" width="80">
          </a>
       </div>
       <style>
@@ -106,43 +114,20 @@
          <div class="container">
             <header>
                <a href="index.php">
-                  <h2 style="color:black;">Precis</h2>
+                  <h2 style="color:#DC143C;">Meetup Event Recommender</h2>
                </a>
-               <h3>Start generating your online summary</h3>
+               <h3>Get User Details</h3>
             </header>
             <form onsubmit="return myFunction();" method='POST' action='index.php'>
-               <style>
-                  textarea#styled {
-                  width: 60%;
-                  height: 170px;
-                  padding: -25px;
-                  font-family: Tahoma, sans-serif;
-                  }
-               </style>
-               <div class="input-group input-group-lg">
-                  <span class="input-group-addon" id="sizing-addon1">Ratio:</span>
-                  <input type="text" name="ratio" class="form-control" id="ratio" placeholder="Give a value from 0 to 1" aria-describedby="sizing-addon1">
-               </div>
-               <br/>
-               <br/>
-               <div class="form-group">
-                   <textarea  class="form-control custom-control" name="text" placeholder="Paste your text article and click Summarize.. " id="styled" style="width:100%"></textarea>
-                   <script>
-                      function clear_textarea() {
-                         document.getElementById("styled").value = "";
-                      }
-
-                   </script>
-               </div>
-               <br>
-               <br>
-               <input type="button" id="smm" value="Clear" class="button1" onclick="javascript:clear_textarea();">
-               <input type='submit' class="button1" id='smm2' name='submit' value='Summarize'>
-         </div>
-         </form>
+              <div class="input-group input-group-lg">
+                 <span class="input-group-addon" id="sizing-addon1">EventId:</span>
+                 <input type="text" name="text" class="form-control" id="styled" placeholder="Paste the event id and submit " aria-describedby="sizing-addon1">
+              </div>
+              <input type='submit' class="button1" id='smm2' name='submit' value='Search'>
+            </form>
          <style>
             #position {
-            width:60%;
+            width:100%;
             margin:0 auto;
             padding-top: 25px;
             }
@@ -161,7 +146,11 @@
             <img src="ajax-loader.gif" style="width:25% ">
             </img>
          </div>
+         <div id="title">
+            
+         </div>
          <div id="position">
+
          </div>
          <div id="error" class="alert alert-danger" role="alert" style="visibility:hidden; width: 50%; margin: auto;">
             Oh snap! Change a few things up and try submitting again.
@@ -179,26 +168,6 @@
          <center>
          <p></p>
          <hr />
-         <div class="row">
-            <section class="4u">
-               <span class="pennant"><span class="fa fa-globe"></span></span>
-               <h3>Precis</h3>
-               <p>Summarize your articles, splitting the most important sentences and ranking a sentence based on importance.</p>
-               <a href="https://github.com/shubham7jain/precis" class="button button-style1">Read More</a>
-            </section>
-            <section class="4u">
-               <span class="pennant"><span class="fa fa-lock"></span></span>
-               <h3>API</h3>
-               <p>This tool is accessible by an API, integrate our api to generate summaries for a given text on your website or application.</p>
-               <a href="" target="_blank" class="button button-style1">Read More</a>
-            </section>
-            <section class="4u">
-               <span class="pennant"><span class="fa fa-globe"></span></span>
-               <h3>The Algorithm</h3>
-               <p>A specific algorithm for extracting the most important points of the original document, using extraction based summarization. </p>
-               <a href="https://github.com/shubham7jain/precis" class="button button-style1">Read More</a>
-            </section>
-         </div>
       </div>
       </div>
       <!-- Footer -->
@@ -215,7 +184,7 @@
       <!-- Copyright -->
       <div id="copyright">
          <div class="container">
-            © All Copyrights Reserved by <a href="http://precis.com">precis.com</a>, College Station, 77840, Contact us: <a href="mailto:precis@tamu.edu">precis@tamu.edu</a>
+            © All Copyrights Reserved by <a href="https://github.com/adityangud/Recommender_for_event_based_social_network"> WhatTheRec</a>, College Station, 77840, Contact us: <a href="mailto:whattherec@tamu.edu">whattherec@tamu.edu</a>
          </div>
       </div>
    </body>

@@ -18,3 +18,11 @@ def get_all_event_details_by_user_id(user_id):
     for er in event_rows:
         events_info_map[er["event_id"]] = {"description":er["description"], "lon" : er["lon"], "time" : er["time"], "lat" : er["lat"]}
     return events_info_map
+
+def get_event_details(event_id):
+	row = db.events_info.find({"event_id":event_id})
+	events_info_map = dict()
+	for er in row:
+		events_info_map[er["event_id"]] = {"description":er["description"], "lon" : er["lon"], "time" : er["time"], "lat" : er["lat"]}
+
+	return events_info_map
