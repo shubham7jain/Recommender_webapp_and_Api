@@ -56,12 +56,12 @@
                success: function(data) {
                    //show content
                    objes = JSON.parse(data)
-                   rows = "<tr><td>" + "Event Id" + "</td><td>" + "Description" + "</td><td></tr>";
-                   for (var i = 0; i < objes.length; i++) {
-                      obj = objes[i];
-                      rows += "<tr><td>" + obj.event_id + "</td><td>" + obj.description + "</td><td></tr>";
+                   rows = "<tr><th>" + "Event Id" + "</th><th>" + "Description" + "</th></tr>";
+                   alert(objes.length)
+                   for (var event in objes) {
+                      rows += "<tr><td>" + event + "</td><td>" + objes[event].description + "</td><td></tr>";
                    }
-                   document.getElementById('position').innerHTML = '<b>'.concat(rows, '</b>');
+                   document.getElementById('position').innerHTML = rows;
                    $( "#position" ).show( "slow", function() {
                      
                   });
