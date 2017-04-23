@@ -56,7 +56,7 @@
                success: function(data) {
                    //show content
                    objes = JSON.parse(data)
-                   rows = "<tr><td>" + Event Id + "</td><td>" + Description + "</td><td></tr>";
+                   rows = "<tr><td>" + "Event Id" + "</td><td>" + "Description" + "</td><td></tr>";
                    for (var i = 0; i < objes.length; i++) {
                       obj = objes[i];
                       rows += "<tr><td>" + obj.event_id + "</td><td>" + obj.description + "</td><td></tr>";
