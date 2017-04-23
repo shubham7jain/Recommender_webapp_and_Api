@@ -3,7 +3,6 @@ from flask import Flask, render_template, request
 import json
 from flask_cors import CORS, cross_origin
 from script import get_all_event_details_by_user_id
-from script import initialize
 
 application = Flask(__name__)
 application.debug=True
@@ -13,7 +12,6 @@ CORS(application)
 def index(user_id):
     try:
         if request.method == "GET":
-            initialize("data/" + 'LCHICAGO')
             user_events_details = get_all_event_details_by_user_id(str(user_id))
             return json.dumps(user_events_details)
     except Exception as e:
